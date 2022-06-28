@@ -1,0 +1,17 @@
+<div class="container">
+  <div>
+    <h3>Menu</h3>
+    <hr />
+  </div>
+
+  <mat-grid-list cols="2" rowHeight="200px">
+    <mat-grid-tile *ngFor="let dish of dishes">
+      <img height="200px" src="{{ dish.imageUrl }}" alt="{{ dish.name }}" />
+      <mat-grid-tile-footer>
+        <h1>{{ dish.name | uppercase }}</h1>
+      </mat-grid-tile-footer>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+
+<app-dish-detail></app-dish-detail>
