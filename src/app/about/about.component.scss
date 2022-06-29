@@ -1,0 +1,25 @@
+.history {
+  margin: 0 5vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+.history div:nth-of-type(1) {
+  width: 60%;
+}
+
+.footer-about {
+  margin: 15px;
+}
+
+.leader-card {
+  display: flex;
+}
+
+.leader-header-image img {
+  margin: 0 15px;
+  margin-bottom: 10px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}

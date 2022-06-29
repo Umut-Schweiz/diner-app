@@ -1,0 +1,39 @@
+$lt-gray: #ddd;
+$background-dark: #26076c;
+$background-light: #65ac4b;
+$background-pale: #D1C4E9;
+$background-moredark: #4527A0;
+
+@mixin zero-margin($pad-up-down, $pad-left-right) {
+    margin: 0px auto;
+    padding: $pad-up-down $pad-left-right;
+}
+
+.jumbotron {
+  display: flex;
+  justify-content: space-around;
+  @include zero-margin(70px,30px);
+  background: $background-light ;
+  color:floralwhite;
+  min-height: 150px;
+}
+
+.jumbotron img {
+  width: 200px;
+  border-radius: 15%;
+}
+
+.header-top img{
+  border-radius: 50%;
+}
+
+.active {
+  background: $background-moredark;
+}
+
+.border {
+  border-radius: 20%;
+}
+
+
+
