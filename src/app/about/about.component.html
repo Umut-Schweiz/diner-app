@@ -46,7 +46,7 @@
   </div>
 
 
-  <div class="leader">
+  <div class="leader" *ngIf="leaders">
     <h2>Corporate Leadership</h2>
     <mat-card *ngFor="let leader of leaders" class="leader-card">
       <div class="leader-card">
@@ -60,5 +60,8 @@
         </div>
       </div>
     </mat-card>
+  </div>
+  <div [hidden]="leaders">
+    <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
   </div>
 </div>

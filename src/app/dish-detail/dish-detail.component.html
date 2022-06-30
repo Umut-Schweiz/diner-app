@@ -1,34 +1,102 @@
-<div class="dish-details">
+<div class="dish-details" *ngIf="dish">
   <div class="selectedDish">
-   <mat-card  *ngIf="dish" class="dish-detail-card">
-    <mat-card-header>
-      <mat-card-title><h3>{{ dish.name | uppercase }}</h3></mat-card-title>
-    </mat-card-header>
-    <img mat-card-image  src="{{ dish.imageUrl }}"
-    alt="{{ dish.name }}">
-    <mat-card-content>
-      <p>{{ dish.description }}</p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-      <button mat-button (click)="goBack()">BACK</button>
-    </mat-card-actions>
-  </mat-card>
+    <mat-card *ngIf="dish" class="dish-detail-card">
+      <mat-card-header>
+        <mat-card-title
+          ><h3 *ngIf="dish">{{ dish.name | uppercase }}</h3></mat-card-title
+        >
+      </mat-card-header>
+      <img mat-card-image src="{{ dish.imageUrl }}" alt="{{ dish.name }}" />
+
+      <mat-card-content>
+        <p>{{ dish.description }}</p>
+      </mat-card-content>
+      <mat-card-actions class="change-dish">
+        <button mat-button [routerLink]="['/dishdetail', prev]">
+          <span class="fa fa-chevron-left fa-lg"></span>
+        </button>
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
+        <button mat-button (click)="goBack()">BACK</button>
+        <button mat-button [routerLink]="['/dishdetail', next]">
+          <span class="fa fa-chevron-right fa-lg"></span>
+        </button>
+      </mat-card-actions>
+    </mat-card>
   </div>
 
   <div class="comments">
-    <div id="comments">
-      <h2>Comments</h2>
-      <div>
-        <ul *ngIf="dish">
-          <li *ngFor="let comment of dish.comments">
-            <p>{{ comment.comment}}</p>
-            <p>{{ comment.rating}} Stars</p>
-            <p>-- {{ comment.author }} {{ comment.date | date:'MMM d, y, h:mm' }}</p>
-          </li>
-        </ul>
+    <mat-card>
+      <div id="comments">
+        <h2>Comments</h2>
+        <div>
+          <ul *ngIf="dish">
+            <li *ngFor="let comment of dish.comments">
+              <p>{{ comment.comment }}</p>
+              <p>{{ comment.rating }} Stars</p>
+              <p>
+                -- {{ comment.author }}
+                {{ comment.date | date: "MMM d, y, h:mm" }}
+              </p>
+            </li>
+            <li *ngIf="this.commentForm.valid">
+              <p>{{commentForm.value.comment}}</p>
+              <p>{{commentForm.value.rating}} Stars</p>
+              <p>--{{commentForm.value.author}}</p>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
+    </mat-card>
+  </div>
+  <div>
+    <mat-card>
+      <form
+        novalidate
+        [formGroup]="commentForm"
+        #cform="ngForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <mat-form-field>
+          <input
+            matInput
+            formControlName="author"
+            placeholder="Name"
+            type="text"
+            required
+          />
+          <mat-error *ngIf="commentErrors.author" >{{ commentErrors.author }}</mat-error>
+        </mat-form-field>
+
+        <mat-slider
+          min="1"
+          max="5"
+          step="1"
+          thumbLabel
+          tickInterval="1"
+          name="rating"
+          formControlName="rating"
+        ></mat-slider>
+        <mat-form-field>
+          <textarea
+            matInput
+            formControlName="comment"
+            placeholder="Your Comment"
+            rows="12"
+          ></textarea>
+          <mat-error *ngIf="commentErrors.comment">{{ commentErrors.comment }}</mat-error>
+        </mat-form-field>
+
+
+        <button
+          type="submit"
+          mat-button
+          class="background-primary text-floral-white"
+          [disabled]="commentForm.invalid"
+        >
+          Submit
+        </button>
+      </form>
+    </mat-card>
   </div>
 </div>

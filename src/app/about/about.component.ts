@@ -17,8 +17,9 @@ export class AboutComponent implements OnInit {
     this.getLeaders();
   }
 
-  getLeaders():Leader[] {
-    return this.leaders = this.leaderService.getLeaders();
+  getLeaders():void {
+    this.leaderService.getLeaders()
+      .subscribe(data => this.leaders = data);;
   }
 
 

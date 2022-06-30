@@ -43,3 +43,7 @@
 </mat-card>
 
 </div>
+
+<div [hidden]="dish && leader && promotion">
+  <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+</div>
