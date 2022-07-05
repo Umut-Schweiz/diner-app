@@ -1,6 +1,6 @@
 <div class="container">
 
-<mat-card *ngIf="dish">
+<mat-card *ngIf="dish" [@expand]>
   <mat-card-header>
     <div mat-card-avatar></div>
     <mat-card-title>
@@ -14,7 +14,7 @@
   </mat-card-content>
 </mat-card>
 
-<mat-card *ngIf="promotion">
+<mat-card *ngIf="promotion" [@expand]>
   <mat-card-header>
     <div mat-card-avatar></div>
     <mat-card-title>
@@ -28,7 +28,7 @@
   </mat-card-content>
 </mat-card>
 
-<mat-card *ngIf="leader">
+<mat-card *ngIf="leader" [@expand]>
   <mat-card-header>
     <div mat-card-avatar></div>
     <mat-card-title>

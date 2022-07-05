@@ -1,25 +1,32 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ContactType, Feedback } from '../shared/feedback';
+import { expand, flyInOut } from '../animations/app.animation';
+import { FeedbackService } from '../services/feedback.service';
 
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss']
+  styleUrls: ['./contact.component.scss'],
+  host: {
+    '[@flyInOut]': 'true',
+    'style': 'display: block;'
+    },
+  animations: [
+    flyInOut(),
+    expand()
+  ]
 })
 export class ContactComponent implements OnInit {
 
   feedbackForm!: FormGroup;
   feedback!: Feedback;
   contactType = ContactType;
+  submitted!: any;
+  showForm = true;
+  errMess!:string;
 
   @ViewChild('fform') feedbackFormDirective!:{ resetForm: () => void; };
-
-  constructor(private fb: FormBuilder) { }
-
-  ngOnInit(): void {
-    this.createForm();
-  }
 
   formErrors:any = {
     'firstname': '',
@@ -49,6 +56,16 @@ export class ContactComponent implements OnInit {
     },
   };
 
+  constructor(
+    private fb: FormBuilder,
+    private feedbackService : FeedbackService
+    ) { }
+
+  ngOnInit(): void {
+    this.createForm();
+  }
+
+
 
   createForm():void {
     this.feedbackForm = this.fb.group({
@@ -74,7 +91,6 @@ export class ContactComponent implements OnInit {
     const form = this.feedbackForm;
     for (const field in this.formErrors) {
       if (this.formErrors.hasOwnProperty(field)) {
-        // clear previous error message (if any)
         this.formErrors[field] = '';
         const control = form.get(field);
         if (control && control.dirty && !control.valid) {
@@ -89,9 +105,17 @@ export class ContactComponent implements OnInit {
     }
   }
 
-
   onSubmit() {
     this.feedback = this.feedbackForm.value;
+    this.showForm = false;
+    this.feedbackService.submitFeedback(this.feedback)
+      .subscribe({
+         next: (feedback:Feedback): void => {
+            this.submitted = feedback;
+            setTimeout(() => { this.submitted = null; this.showForm = true; }, 5000);
+         },
+         error: (errmess: any) => this.errMess = <any>errmess
+        });
     this.feedbackForm.reset({
       firstname: '',
       lastname: '',

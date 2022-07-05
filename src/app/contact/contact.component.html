@@ -44,7 +44,7 @@
   <div class="form-size">
     <mat-card>
     <h3>Send us your Feedback</h3>
-    <form [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()" *ngIf="showForm" [@expand] >
       <p>
         <mat-form-field class="half-width">
           <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
@@ -84,6 +84,20 @@
       </p>
       <button type="submit" [disabled]="feedbackForm.invalid" mat-button class="background-primary text-floral-white">Submit</button>
     </form>
+    <mat-list *ngIf="submitted" [@expand]>
+      <h3>Your Submission</h3>
+      <mat-list-item >First Name : {{ submitted.firstname }}</mat-list-item>
+      <mat-list-item >Last Name : {{ submitted.lastname }}</mat-list-item>
+      <mat-list-item >Tel. Number : {{ submitted.telnum }}</mat-list-item>
+      <mat-list-item >Email : {{ submitted.email }}</mat-list-item>
+      <mat-list-item >Contact You : {{ submitted.agree }}</mat-list-item>
+      <mat-list-item >How? : {{ submitted.contacttype }}</mat-list-item>
+      <mat-list-item >Feedback : {{ submitted.message }}</mat-list-item>
+    </mat-list>
+    <div [hidden]="showForm || submitted" [@expand]>
+      <h4>Submitting Form</h4><mat-spinner></mat-spinner>
+    </div>
    </mat-card>
+
   </div>
 </div>

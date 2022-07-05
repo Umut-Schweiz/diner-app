@@ -1,4 +1,4 @@
-<div class="dish-details" *ngIf="dish">
+<div class="dish-details" *ngIf="dish" [@visibility]="visibility">
   <div class="selectedDish">
     <mat-card *ngIf="dish" class="dish-detail-card">
       <mat-card-header>
@@ -30,7 +30,7 @@
       <div id="comments">
         <h2>Comments</h2>
         <div>
-          <ul *ngIf="dish">
+          <ul *ngIf="dish" [@visibility]="visibility">
             <li *ngFor="let comment of dish.comments">
               <p>{{ comment.comment }}</p>
               <p>{{ comment.rating }} Stars</p>

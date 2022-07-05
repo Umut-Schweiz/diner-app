@@ -1,4 +1,4 @@
-<div class="container" *ngIf="dishes">
+<div class="container" *ngIf="dishes" [@expand]>
   <div>
     <h3>Menu</h3>
     <hr />
@@ -6,7 +6,7 @@
 
   <mat-grid-list cols="2" rowHeight="200px">
 
-    <mat-grid-tile *ngFor="let dish of dishes" [routerLink]="['/dishdetail', dish.id]">
+    <mat-grid-tile *ngFor="let dish of dishes" [routerLink]="['/dishdetail', dish.id]" appHighlight>
       <img height="200px" src="{{ dish.imageUrl }}" alt="{{ dish.name }}" />
       <mat-grid-tile-footer>
         <h1>{{ dish.name | uppercase }}</h1>
