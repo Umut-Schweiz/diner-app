@@ -23,6 +23,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { baseURL } from './shared/baseurl';
+
 
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -58,13 +61,14 @@ import {MatSliderModule} from '@angular/material/slider';
     MatSlideToggleModule,
     MatCheckboxModule,
     MatSliderModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule
   ],
   entryComponents: [
     LoginComponent
   ],
-  providers: [],
+  providers: [ ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
