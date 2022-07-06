@@ -1,6 +1,6 @@
 $lt-gray: #ddd;
-$background-dark: #26076c;
-$background-light: #65ac4b;;
+$background-dark: #512DA8;
+$background-light: #9575CD;
 $background-pale: #D1C4E9;
 
 @mixin zero-margin($pad-up-down, $pad-left-right) {
@@ -9,28 +9,8 @@ $background-pale: #D1C4E9;
 }
 
 .footer{
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    background-color: $background-light;
+    background-color: $background-pale;
     @include zero-margin(20px, 0px);
-}
-.footer-links {
-  display: flex;
-  justify-content: space-around;
-}
-
-.navigate-footer{
-  display: flex;
-  flex-direction: column;
-}
-
-.icon-footer {
-  align-self: center;
-}
-
-address {
-  font-size: 80%;
 }
 
 .btn-facebook {color:#fff!important; background-color:#3b5998!important;}

@@ -1,7 +1,3 @@
-.location {
-  display: flex;
-  justify-content: space-around;
-}
 
 .full-width {
   width: 95%
@@ -12,8 +8,13 @@
 }
 
 .form-size {
-  padding: 25px;
-  margin: 0 auto;
   width: 75%
 }
 
+.mat-card {
+  margin: 5px;
+}
+
+h2 {
+  text-align: center;
+}

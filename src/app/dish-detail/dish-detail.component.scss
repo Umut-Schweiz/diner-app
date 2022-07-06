@@ -1,20 +1,17 @@
-
-.dish-details {
-  display: flex;
-  padding: 10px;
-}
-
-.dish-details div{
-  margin: 10px;
-}
-
-.change-dish{
-  text-align: center;
-}
-
 form {
   display: flex;
   flex-direction: column;
 }
 
+img {
+  max-height: 60vh;
+}
+
+#detail-card{
+  background-color: red !important;
+}
+
+.mat-card {
+  margin: 10px;
+}
 

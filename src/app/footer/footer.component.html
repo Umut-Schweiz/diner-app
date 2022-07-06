@@ -1,55 +1,43 @@
-<div class="container footer">
-  <div class="footer-links">
-    <div class="navigate-footer">
-      <h4>Links</h4>
-      <button mat-stroked-button color="primary" routerLink="/home"> Home </button>
-      <button mat-stroked-button color="primary" routerLink="/about"> About </button>
-      <button mat-stroked-button color="primary" routerLink="/menu"> Menu </button>
-      <button mat-stroked-button color="primary" routerLink="/contact"> Contact </button>
-    </div>
+ <div class="container footer"
+    fxLayout="row wrap"
+    fxLayout.lt-md="column"
+    fxLayoutAlign="center center"
+    fxLayoutGap="10px">
 
-    <div class="adress">
-      <h4>Our Address</h4>
-      <address>
-        Zürich<br />
-        Switzerland<br />
-        <i class="fa fa-phone"></i>: +111 111 111<br />
-        <i class="fa fa-envelope"></i>:
-        <a href="mailto:dinner@food.net">confusion@food.net</a>
-      </address>
-    </div>
-
-    <div class="icon-footer">
-      <div style="text-align: center">
-        <a mat-icon-button class="btn-google-plus" href="http://google.com/+"
-          ><i class="fa fa-google-plus fa-lg"></i
-        ></a>
-        <a
-          mat-icon-button
-          class="btn-facebook"
-          href="http://www.facebook.com/profile.php?id="
-          ><i class="fa fa-facebook fa-lg"></i
-        ></a>
-        <a
-          mat-icon-button
-          class="btn-linkedin"
-          href="http://www.linkedin.com/in/"
-          ><i class="fa fa-linkedin fa-lg"></i
-        ></a>
-        <a mat-icon-button class="btn-twitter" href="http://twitter.com/"
-          ><i class="fa fa-twitter fa-lg"></i
-        ></a>
-        <a mat-icon-button class="btn-youtube" href="http://youtube.com/"
-          ><i class="fa fa-youtube fa-lg"></i
-        ></a>
-        <a mat-icon-button class="btn-mail" href="mailto:"
-          ><i class="fa fa-envelope-o fa-lg"></i
-        ></a>
+  <div fxFlex="100" fxFlex.gt-sm="50">
+    <div fxLayout="row">
+      <div fxFlex="40" fxFlexOffset="10px">
+        <h4>Links</h4>
+        <mat-list>
+          <mat-list-item><a mat-button color="primary" routerLink="/home">Home</a></mat-list-item>
+          <mat-list-item><a mat-button color="primary" routerLink="/about">About</a></mat-list-item>
+          <mat-list-item><a mat-button color="primary" routerLink="/menu">Menu</a></mat-list-item>
+          <mat-list-item><a mat-button color="primary" routerLink="/contact">Contact</a></mat-list-item>
+        </mat-list>
+      </div>
+      <div fxFlex="55">
+        <h4>Our Address</h4>
+        <address>
+          7000<br> Chur<br> Switzerland<br>
+          <i class="fa fa-phone"></i>: +41 1234 5678<br>
+          <i class="fa fa-fax"></i>: +41 8765 4321<br>
+          <i class="fa fa-envelope"></i>:
+          <a href="mailto:dinnern@food.net">dinner@food.net</a>
+        </address>
       </div>
     </div>
   </div>
-
+  <div fxFlex="100" fxFlex.gt-sm="45">
+    <div style="text-align:center">
+      <a mat-icon-button class="btn-google-plus" href="http://google.com/+"><i class="fa fa-google-plus fa-lg"></i></a>
+      <a mat-icon-button class="btn-facebook" href="http://www.facebook.com/profile.php?id="><i class="fa fa-facebook fa-lg"></i></a>
+      <a mat-icon-button class="btn-linkedin" href="http://www.linkedin.com/in/"><i class="fa fa-linkedin fa-lg"></i></a>
+      <a mat-icon-button class="btn-twitter" href="http://twitter.com/"><i class="fa fa-twitter fa-lg"></i></a>
+      <a mat-icon-button class="btn-youtube" href="http://youtube.com/"><i class="fa fa-youtube fa-lg"></i></a>
+      <a mat-icon-button class="btn-mail" href="mailto:"><i class="fa fa-envelope-o fa-lg"></i></a>
+    </div>
+  </div>
   <div>
-    <p>© Copyright 2018 Ristorante Con Fusion</p>
+      <p>© Copyright 2022 Restaurante Diner</p>
   </div>
 </div>

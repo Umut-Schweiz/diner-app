@@ -8,14 +8,15 @@ import { Dish } from '../shared/dish';
 
 import { switchMap } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { visibility } from '../animations/app.animation';
+import { expand, visibility } from '../animations/app.animation';
 
 @Component({
   selector: 'app-dish-detail',
   templateUrl: './dish-detail.component.html',
   styleUrls: ['./dish-detail.component.scss'],
   animations: [
-    visibility()
+    visibility(),
+    expand()
   ]
 })
 export class DishDetailComponent implements OnInit {

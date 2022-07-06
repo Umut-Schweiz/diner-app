@@ -1,6 +1,18 @@
-<div class="dish-details" *ngIf="dish" [@visibility]="visibility">
-  <div class="selectedDish">
-    <mat-card *ngIf="dish" class="dish-detail-card">
+<div class="container"
+    fxLayout="row wrap"
+    fxLayout.sm="column"
+    fxLayout.xs="column"
+    fxLayoutAlign.gt-md="space-around">
+
+  <div fxFlex="100">
+    <div>
+      <h3 *ngIf="dish">{{dish.name | uppercase}}</h3>
+      <hr>
+    </div>
+  </div>
+
+  <div fxFlex="40" *ngIf="dish" [@visibility]="visibility" [@expand]>
+    <mat-card>
       <mat-card-header>
         <mat-card-title
           ><h3 *ngIf="dish">{{ dish.name | uppercase }}</h3></mat-card-title
@@ -25,8 +37,8 @@
     </mat-card>
   </div>
 
-  <div class="comments">
-    <mat-card>
+  <div fxFlex="40" fxLayoutAlign="space-around">
+    <mat-card fxFlex="40">
       <div id="comments">
         <h2>Comments</h2>
         <div>
@@ -48,61 +60,64 @@
         </div>
       </div>
     </mat-card>
+    <div fxFlex="40" *ngIf="dish" [@visibility]="visibility" [@expand]>
+      <mat-card>
+        <form
+          novalidate
+          [formGroup]="commentForm"
+          #cform="ngForm"
+          (ngSubmit)="onSubmit()"
+        >
+          <mat-form-field>
+            <input
+              matInput
+              formControlName="author"
+              placeholder="Name"
+              type="text"
+              required
+            />
+            <mat-error *ngIf="commentErrors.author" >{{ commentErrors.author }}</mat-error>
+          </mat-form-field>
+
+          <mat-slider
+            min="1"
+            max="5"
+            step="1"
+            thumbLabel
+            tickInterval="1"
+            name="rating"
+            formControlName="rating"
+          ></mat-slider>
+          <mat-form-field>
+            <textarea
+              matInput
+              formControlName="comment"
+              placeholder="Your Comment"
+              rows="12"
+            ></textarea>
+            <mat-error *ngIf="commentErrors.comment">{{ commentErrors.comment }}</mat-error>
+          </mat-form-field>
+
+          <button
+            type="submit"
+            mat-button
+            class="background-primary text-floral-white"
+            [disabled]="commentForm.invalid"
+          >
+            Submit
+          </button>
+        </form>
+      </mat-card>
+    </div>
+
+
+  </div>
+  <div [hidden]="dish || errMess">
+    <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
   </div>
 
   <div *ngIf="errMess">
     <h2>Error</h2>
     <h4>{{errMess}}</h4>
-  </div>
-
-  <div>
-    <mat-card>
-      <form
-        novalidate
-        [formGroup]="commentForm"
-        #cform="ngForm"
-        (ngSubmit)="onSubmit()"
-      >
-        <mat-form-field>
-          <input
-            matInput
-            formControlName="author"
-            placeholder="Name"
-            type="text"
-            required
-          />
-          <mat-error *ngIf="commentErrors.author" >{{ commentErrors.author }}</mat-error>
-        </mat-form-field>
-
-        <mat-slider
-          min="1"
-          max="5"
-          step="1"
-          thumbLabel
-          tickInterval="1"
-          name="rating"
-          formControlName="rating"
-        ></mat-slider>
-        <mat-form-field>
-          <textarea
-            matInput
-            formControlName="comment"
-            placeholder="Your Comment"
-            rows="12"
-          ></textarea>
-          <mat-error *ngIf="commentErrors.comment">{{ commentErrors.comment }}</mat-error>
-        </mat-form-field>
-
-
-        <button
-          type="submit"
-          mat-button
-          class="background-primary text-floral-white"
-          [disabled]="commentForm.invalid"
-        >
-          Submit
-        </button>
-      </form>
-    </mat-card>
   </div>
 </div>
