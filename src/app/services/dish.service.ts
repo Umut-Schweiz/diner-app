@@ -45,5 +45,18 @@ export class DishService {
 
   }
 
+  /* new Dish
+  postDish(dish:Dish) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
+    return this.http.post(baseURL + 'dishes', dish, httpOptions)
+    .pipe(catchError(this.processHTTPMsgService.handleError));
+
+  }
+  */
+
 
 }

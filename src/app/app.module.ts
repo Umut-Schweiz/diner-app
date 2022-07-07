@@ -23,16 +23,24 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { baseURL } from './shared/baseurl';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ReactiveFormsModule } from '@angular/forms';
-import {MatSliderModule} from '@angular/material/slider';
+import { MatSliderModule } from '@angular/material/slider';
 import { HighlightDirective } from './directives/highlight.directive';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FavoritesComponent } from './favorites/favorites.component';
+import { DishService } from './services/dish.service';
+import { PromotionService } from './services/promotion.service';
+import { LeaderService } from './services/leader.service';
+import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
+import { FeedbackService } from './services/feedback.service';
+import { AuthService } from './services/auth.service';
+import { AuthGuardService } from './services/auth-guard.service';
+import { FavoriteService } from './services/favorite.service';
+import { AuthInterceptor, UnauthorizedInterceptor } from './services/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -45,34 +53,54 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     HomeComponent,
     ContactComponent,
     LoginComponent,
-    HighlightDirective
+    HighlightDirective,
+    FavoritesComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatListModule,
     MatGridListModule,
-    MatProgressSpinnerModule,
     MatCardModule,
     MatButtonModule,
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
+    MatCheckboxModule,
     MatSelectModule,
     MatSlideToggleModule,
-    MatCheckboxModule,
+    MatProgressSpinnerModule,
     MatSliderModule,
-    HttpClientModule,
+    FlexLayoutModule,
+    AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    FlexLayoutModule
+    HttpClientModule
   ],
   entryComponents: [
     LoginComponent
   ],
-  providers: [ ],
+  providers: [
+    DishService,
+    PromotionService,
+    LeaderService,
+    ProcessHTTPMsgService,
+    FeedbackService,
+    AuthService,
+    AuthGuardService,
+    FavoriteService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: UnauthorizedInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

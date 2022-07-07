@@ -2,6 +2,10 @@
   <span class="flex-spacer">Login</span>
   <button mat-button mat-dialog-close>&times;</button>
 </mat-toolbar>
+<div *ngIf="errMess">
+  <h2>Error</h2>
+  <h4>{{errMess}}</h4>
+</div>
 <form novalidate #loginForm="ngForm" (ngSubmit)="onSubmit()">
   <mat-dialog-content>
     <p>
