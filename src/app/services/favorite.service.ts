@@ -24,12 +24,12 @@ export class FavoriteService {
       return null;
     }
     */
-    return this.http.get<Favorite>(baseURL + 'favorites')
+    return this.http.get<Favorite>(baseURL + 'favorites.json')
       .pipe(catchError(error => this.processHTTPMsgService.handleError(error)));
   }
 
   postFavorites(dishids: any) {
-    return this.http.post(baseURL + 'favorites/', dishids)
+    return this.http.post(baseURL + 'favorites.json/', dishids)
     .pipe(catchError(error => this.processHTTPMsgService.handleError(error)));
   }
 
@@ -39,7 +39,7 @@ export class FavoriteService {
       return of({ exists: false, favorites: null });
     }
     */
-    return this.http.get<FavoriteExists>(baseURL + 'favorites/' + id)
+    return this.http.get<FavoriteExists>(`${baseURL}favorites/${id}.json`)
     .pipe(catchError(error => this.processHTTPMsgService.handleError(error)));
   }
 

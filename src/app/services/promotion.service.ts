@@ -16,17 +16,17 @@ export class PromotionService {
     private processHTTPMsgService: ProcessHTTPMsgService) { }
 
   getPromotions():Observable<Promotion[]> {
-    return this.http.get<Promotion[]>(baseURL + 'promotions')
+    return this.http.get<Promotion[]>(baseURL + 'promotions.json')
     .pipe(catchError(this.processHTTPMsgService.handleError));
   }
 
   getPromotion(id: string): Observable<Promotion> {
-    return  this.http.get<Promotion>(baseURL + 'promotions/' + id)
+    return  this.http.get<Promotion>(`${baseURL}promotion/${id}.json`)
     .pipe(catchError(this.processHTTPMsgService.handleError));
   }
 
   getFeaturedPromotion():Observable<Promotion>{
-    return this.http.get<Promotion[]>(baseURL + 'promotions?featured=true')
+    return this.http.get<Promotion[]>(baseURL + 'promotions.json?featured=true')
       .pipe(map(promotions => promotions[0]))
       .pipe(catchError(this.processHTTPMsgService.handleError));
   }

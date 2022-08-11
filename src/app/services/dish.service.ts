@@ -15,17 +15,23 @@ export class DishService {
     private processHTTPMsgService: ProcessHTTPMsgService) { }
 
   getDishes(): Observable<Dish[]> {
-    return this.http.get<Dish[]>(baseURL + 'dishes')
+    return this.http.get<Dish[]>(baseURL + 'dishes.json')
       .pipe(catchError(this.processHTTPMsgService.handleError));
   }
 
   getDish(id: number): Observable<Dish> {
-    return this.http.get<Dish>(baseURL + 'dishes/' + id)
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Access-Control-Allow-Origin': '*',
+      })
+    };
+    return this.http.get<Dish>(`${baseURL}dishes/${id}.json`)
       .pipe(catchError(this.processHTTPMsgService.handleError));
   }
 
   getFeaturedDish(): Observable<Dish> {
-    return this.http.get<Dish[]>(baseURL + 'dishes?featured=true').pipe(map(dishes => dishes[0]))
+    return this.http.get<Dish[]>(baseURL + 'dishes.json?featured=true').pipe(map(dishes => dishes[0]))
       .pipe(catchError(this.processHTTPMsgService.handleError));
   }
 
@@ -37,10 +43,11 @@ export class DishService {
   putDish(dish: Dish): Observable<Dish> {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json'
+        'Content-Type':  'application/json',
+        'Access-Control-Allow-Origin': '*',
       })
     };
-    return this.http.put<Dish>(baseURL + 'dishes/' + dish.id, dish, httpOptions)
+    return this.http.put<Dish>(`${baseURL}dishes/${dish.id}.json`, dish, httpOptions)
       .pipe(catchError(this.processHTTPMsgService.handleError));
 
   }
@@ -52,7 +59,7 @@ export class DishService {
         'Content-Type':  'application/json'
       })
     };
-    return this.http.post(baseURL + 'dishes', dish, httpOptions)
+    return this.http.post(baseURL + 'dishes.json', dish, httpOptions)
     .pipe(catchError(this.processHTTPMsgService.handleError));
 
   }
