@@ -20,12 +20,6 @@ export class DishService {
   }
 
   getDish(id: number): Observable<Dish> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'Access-Control-Allow-Origin': '*',
-      })
-    };
     return this.http.get<Dish>(`${baseURL}dishes/${id}.json`)
       .pipe(catchError(this.processHTTPMsgService.handleError));
   }
